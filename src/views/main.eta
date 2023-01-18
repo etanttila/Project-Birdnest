@@ -1,0 +1,46 @@
+<% layout("./layout.eta") %>
+
+<h1>Monadikuikka nest NFZ violators</h1>
+
+<p>
+  Here is a list of pilots, who have violated the 100 m NFZ around the 
+  Monadikuikka nest and have been seen near the nest within the last 10 minutes.
+</p>
+
+<p>
+  Note that the page unfortunately does not update itself,
+  but requires the user to update it to see up-to-date information.
+</p>
+
+<table class="table">
+  <thead>
+    <th>Name</th>
+    <th>Email address</th>
+    <th>Phone number</th>
+    <th>Closest distance to the nest (m)</th>
+    <th>Last seen</th>
+  </thead>
+  <tbody>
+  <% if (it.drones) { %>
+  <% it.drones.forEach(([serialNumber, drone]) => { %>
+    <tr id="<%= serialNumber %>">
+      <td>
+        <%= drone.pilotInfo.name %>
+      </td>
+      <td>
+        <%= drone.pilotInfo.email %>
+      </td>
+      <td>
+        <%= drone.pilotInfo.phoneNumber %>
+      </td>
+      <td>
+        <%= drone.closestDistance %>
+      </td>
+      <td>
+        <%= drone.lastSeen %>
+      </td>
+    </tr>
+  <% }); %>
+  <% } %>
+  </tbody>
+</table>
